@@ -38,7 +38,7 @@
             color: #111;
         }
         .decorated-bg {
-            background-image: url('check1.jpg'); /* Replace 'path-to-your-image.jpg' with the URL or file path of your desired background image */
+            background-image: url('bg.png'); /* Replace 'path-to-your-image.jpg' with the URL or file path of your desired background image */
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -79,7 +79,7 @@
 </head>
 <body>
     <div class="button-container">
-        <button class="button" onclick="toggleTheme()">Toggle Theme</button>
+        <button class="button" onclick="toggleTheme()">Turn On Lights</button>
     </div>
 
     <script>
@@ -174,11 +174,14 @@
             
         // }
         function showWishText() {
-            const images = [
-            'check.jpg', // Replace with the URL of the first image
-            'test.avif', // Replace with the URL of the second image
-            'check.jpg', // Replace with the URL of the third image
-            'sl_110621_46650_18.jpg'  // Replace with the URL of the fourth image
+                const buttonContainer = document.querySelector('.button-container');
+            buttonContainer.innerHTML = '';
+        const images = [
+            'wish1.png',
+            'wish2.png',
+            'wish3.png',
+            'wish4.png',
+            'wish5.png'
         ];
 
         let currentImageIndex = 0;
@@ -202,42 +205,87 @@
         }
 
         // Automatically change the background every 5 seconds (5000ms)
-        intervalId = setInterval(changeBackground, 5000); 
+        intervalId = setInterval(changeBackground, 4000); 
             
         }
         function showMsgText() {
-            const buttonContainer = document.querySelector('.button-container');
+                const buttonContainer = document.querySelector('.button-container');
             buttonContainer.innerHTML = '';
-            const centeredTextContainer = document.createElement('div');
-            centeredTextContainer.classList.add('centered-text-container');
+        const images = [
+            'msg1.png',
+            'msg2.png',
+            'msg3.png',
+            'msg4.png',
+            'msg5.png',
+            'msg6.png',
+            'msg7.png',
+            'msg8.png',
+            'msg9.png',
+            'msg10.png',
+            'msg11.png',
+            'msg12.png',
+            'msg13.png',
+            'msg14.png',
+            'msg15.png'
+        ];
 
-            const words = ["Mottu", "are", "you", "there", "check"];
-            let currentIndex = 0;
+        let currentImageIndex = 0;
+        let intervalId = null;
 
-            function showMsgWord() {
-                if (currentIndex < words.length) {
-                    const wordParagraph = document.createElement('p');
-                    wordParagraph.classList.add('centered-text');
-                    wordParagraph.textContent = words[currentIndex];
-                    centeredTextContainer.appendChild(wordParagraph);
-                    currentIndex++;
-                    setTimeout(() => {
-                        wordParagraph.style.opacity = 0;
-                        setTimeout(showMsgWord, 1000); // Change delay here as per your preference
-                    }, 2000); // Show each word for 2 seconds
-                } else {
-                    centeredTextContainer.classList.add('hidden');
+        function changeBackground() {
+            const body = document.querySelector('body');
+            body.style.backgroundImage = `url(${images[currentImageIndex]})`;
+            currentImageIndex++;
+
+            if (currentImageIndex === images.length) {
+                // If reached the last image, clear the interval
+                clearInterval(intervalId);
+                buttonContainer.innerHTML = '';
                     // const wishButton = document.createElement('button');
                     // wishButton.classList.add('button');
-                    // wishButton.textContent = 'Wish';
-                    // wishButton.onclick = showWishText;
+                    // wishButton.textContent = 'Messge for You';
+                    // wishButton.onclick = showMsgText;
                     // buttonContainer.appendChild(wishButton);
-                }
             }
-
-            document.body.appendChild(centeredTextContainer);
-            showMsgWord();
         }
+
+        // Automatically change the background every 5 seconds (5000ms)
+        intervalId = setInterval(changeBackground, 4000); 
+            
+        }
+        // function showMsgText() {
+        //     const buttonContainer = document.querySelector('.button-container');
+        //     buttonContainer.innerHTML = '';
+        //     const centeredTextContainer = document.createElement('div');
+        //     centeredTextContainer.classList.add('centered-text-container');
+
+        //     const words = ["Mottu", "are", "you", "there", "check"];
+        //     let currentIndex = 0;
+
+        //     function showMsgWord() {
+        //         if (currentIndex < words.length) {
+        //             const wordParagraph = document.createElement('p');
+        //             wordParagraph.classList.add('centered-text');
+        //             wordParagraph.textContent = words[currentIndex];
+        //             centeredTextContainer.appendChild(wordParagraph);
+        //             currentIndex++;
+        //             setTimeout(() => {
+        //                 wordParagraph.style.opacity = 0;
+        //                 setTimeout(showMsgWord, 1000); // Change delay here as per your preference
+        //             }, 2000); // Show each word for 2 seconds
+        //         } else {
+        //             centeredTextContainer.classList.add('hidden');
+        //             // const wishButton = document.createElement('button');
+        //             // wishButton.classList.add('button');
+        //             // wishButton.textContent = 'Wish';
+        //             // wishButton.onclick = showWishText;
+        //             // buttonContainer.appendChild(wishButton);
+        //         }
+        //     }
+
+        //     document.body.appendChild(centeredTextContainer);
+        //     showMsgWord();
+        // }
     </script>
     </script>
 </body>
