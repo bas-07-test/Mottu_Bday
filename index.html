@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Page with Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            transition: background-color 2s;
+        }
+        .button-container {
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .button {
+            background-color: #f8c291;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #111;
+        }
+        .light-theme {
+            background-color: #f0f0f0;
+            color: #111;
+        }
+        .decorated-bg {
+            background-image: url('check1.jpg'); /* Replace 'path-to-your-image.jpg' with the URL or file path of your desired background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .decorated-bg1 {
+            background-image: url('test.avif'); /* Replace 'path-to-your-image.jpg' with the URL or file path of your desired background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .hidden {
+            display: none;
+        }
+        .centered-text-container {
+            position: absolute;
+            top: 45%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            white-space: nowrap; /* Prevent words from wrapping to a new line */
+        }
+        .centered-text {
+            font-size: 32px; /* Increase font size */
+            font-family: 'Courier New', Courier, monospace; /* Change font style */
+            margin: 10px;
+            opacity: 0; /* Hide the text initially */
+            animation: fade-in-out 1s forwards; /* Apply fade-in and fade-out animation */
+            display: block;
+            position: absolute; /* Display on the same line */
+        }
+        @keyframes fade-in-out {
+            0%, 100% {
+                opacity: 0; /* Hide at the start and end */
+            }
+            25%, 75% {
+                opacity: 1; /* Show at 25% and hide at 75% of the animation */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="button" onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.querySelector('body');
+            const buttonContainer = document.querySelector('.button-container');
+            body.classList.toggle('light-theme');
+
+           
+            buttonContainer.innerHTML = '';
+                setTimeout(() => {
+                    const decorateButton = document.createElement('button');
+                    decorateButton.classList.add('button');
+                    decorateButton.textContent = 'Decorate';
+                    decorateButton.onclick = addDecorations;
+                    buttonContainer.appendChild(decorateButton);
+                }, 1000);
+           
+        }
+
+        function addDecorations() {
+            document.body.classList.add('decorated-bg'); // Apply the decorated background image
+            const buttonContainer = document.querySelector('.button-container');
+            buttonContainer.innerHTML = '';
+            setTimeout(() => {
+            buttonContainer.innerHTML = '';
+                setTimeout(() => {
+                    const decorateButton = document.createElement('button');
+                    decorateButton.classList.add('button');
+                    decorateButton.textContent = 'Play Music';
+                    decorateButton.onclick = playMusic;
+                    buttonContainer.appendChild(decorateButton);
+                }, 1000);
+            }, 1000);
+        }
+
+        function playMusic() {
+            const audio = new Audio('audio.mp3'); // Replace 'path-to-your-audio-file.mp3' with the URL or file path of your audio file
+            audio.loop = true;
+            audio.play();
+
+            const buttonContainer = document.querySelector('.button-container');
+            buttonContainer.innerHTML = '';
+            setTimeout(() => {
+            const wishButton = document.createElement('button');
+            wishButton.classList.add('button');
+            wishButton.textContent = 'Wish';
+            wishButton.onclick = showWishText;
+            buttonContainer.appendChild(wishButton);
+        }, 4000); // Add 1-second delay after clearing the button container
+    }
+        
+
+        // function showWishText() {
+        //     const buttonContainer = document.querySelector('.button-container');
+        //     buttonContainer.innerHTML = '';
+        //     const centeredTextContainer = document.createElement('div');
+        //     centeredTextContainer.classList.add('centered-text-container');
+
+        //     const words = ["Hey Mottu", "Wish You", "Happy Birthday", "Wish You", "Great Success","Keep Smiling","Enjoy Fully","May this Year", "Fill with Happiness","Keep handling my torture","wish your dreams","come true"];
+        //     let currentIndex = 0;
+
+        //     function showNextWord() {
+        //         if (currentIndex < words.length) {
+        //             const wordParagraph = document.createElement('p');
+        //             wordParagraph.classList.add('centered-text');
+        //             wordParagraph.textContent = words[currentIndex];
+        //             centeredTextContainer.appendChild(wordParagraph);
+        //             currentIndex++;
+        //             setTimeout(() => {
+        //                 wordParagraph.style.opacity = 0;
+        //                 setTimeout(showNextWord, 1000); // Change delay here as per your preference
+        //             }, 3000); // Show each word for 2 seconds
+        //         } else {
+        //             //centeredTextContainer.classList.add('hidden');
+        //             // const wishButton = document.createElement('button');
+        //             // wishButton.classList.add('button');
+        //             // wishButton.textContent = 'Wish';
+        //             // wishButton.onclick = showWishText;
+        //             // buttonContainer.appendChild(wishButton);
+        //             buttonContainer.innerHTML = '';
+        //             const wishButton = document.createElement('button');
+        //             wishButton.classList.add('button');
+        //             wishButton.textContent = 'Messge for You';
+        //             wishButton.onclick = showMsgText;
+        //             buttonContainer.appendChild(wishButton);
+        //                 }
+        //     }
+
+        //     document.body.appendChild(centeredTextContainer);
+        //     showNextWord();
+            
+        // }
+        function showWishText() {
+            const images = [
+            'check.jpg', // Replace with the URL of the first image
+            'test.avif', // Replace with the URL of the second image
+            'check.jpg', // Replace with the URL of the third image
+            'sl_110621_46650_18.jpg'  // Replace with the URL of the fourth image
+        ];
+
+        let currentImageIndex = 0;
+        let intervalId = null;
+
+        function changeBackground() {
+            const body = document.querySelector('body');
+            body.style.backgroundImage = `url(${images[currentImageIndex]})`;
+            currentImageIndex++;
+
+            if (currentImageIndex === images.length) {
+                // If reached the last image, clear the interval
+                clearInterval(intervalId);
+                buttonContainer.innerHTML = '';
+                    const wishButton = document.createElement('button');
+                    wishButton.classList.add('button');
+                    wishButton.textContent = 'Messge for You';
+                    wishButton.onclick = showMsgText;
+                    buttonContainer.appendChild(wishButton);
+            }
+        }
+
+        // Automatically change the background every 5 seconds (5000ms)
+        intervalId = setInterval(changeBackground, 5000); 
+            
+        }
+        function showMsgText() {
+            const buttonContainer = document.querySelector('.button-container');
+            buttonContainer.innerHTML = '';
+            const centeredTextContainer = document.createElement('div');
+            centeredTextContainer.classList.add('centered-text-container');
+
+            const words = ["Mottu", "are", "you", "there", "check"];
+            let currentIndex = 0;
+
+            function showMsgWord() {
+                if (currentIndex < words.length) {
+                    const wordParagraph = document.createElement('p');
+                    wordParagraph.classList.add('centered-text');
+                    wordParagraph.textContent = words[currentIndex];
+                    centeredTextContainer.appendChild(wordParagraph);
+                    currentIndex++;
+                    setTimeout(() => {
+                        wordParagraph.style.opacity = 0;
+                        setTimeout(showMsgWord, 1000); // Change delay here as per your preference
+                    }, 2000); // Show each word for 2 seconds
+                } else {
+                    centeredTextContainer.classList.add('hidden');
+                    // const wishButton = document.createElement('button');
+                    // wishButton.classList.add('button');
+                    // wishButton.textContent = 'Wish';
+                    // wishButton.onclick = showWishText;
+                    // buttonContainer.appendChild(wishButton);
+                }
+            }
+
+            document.body.appendChild(centeredTextContainer);
+            showMsgWord();
+        }
+    </script>
+    </script>
+</body>
+</html>
